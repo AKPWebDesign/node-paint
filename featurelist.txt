@@ -1,0 +1,6 @@
+Things to do:
+
+Paint on a canvas - Almost done.
+multiplayer server
+server browser
+public/private servers

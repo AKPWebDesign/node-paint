@@ -1,0 +1,18 @@
+{
+  "name": "node-paint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Austin Peterson <austin@akpwebdesign.com>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.0"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "titlebar": "^1.4.0"
+  }
+}

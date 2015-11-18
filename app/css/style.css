@@ -1,0 +1,92 @@
+body {
+  background-image: url('../img/img-noise-100x100.png');
+}
+
+::selection {
+  background-color: transparent;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.menu ul.main {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.menu ul.main li {
+  padding: 5px 0;
+}
+
+.menu ul.main li button.pure-button {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  width: 150px;
+}
+
+.logo img.logo {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+}
+
+body.game {
+  margin: 0;
+  overflow: hidden;
+  background: none;
+}
+
+body.game, html {
+  height: 100%;
+}
+
+.game div.container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.game::-webkit-scrollbar {
+    display: none;
+}
+
+#gameCanvas {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.game .footerContainer {
+  position:fixed;
+  bottom:-32px;
+  width:100%;
+  margin: 0;
+  padding: 10px 0 0 0;
+  transition: 0.25s ease-in-out;
+}
+
+.game .footerContainer:hover {
+  bottom: 0;
+}
+
+.game .footerContainer * {
+  margin: 0; padding: 0;
+}
+
+.game .gameMenu {
+  z-index: 9001;
+  background-color: #555;
+  color: white;
+  border-radius: 10px 10px 0px 0px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  width: 300px;
+  margin-right:auto;
+  margin-left:auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
