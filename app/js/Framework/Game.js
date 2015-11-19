@@ -1,9 +1,11 @@
-function Game(canvas) {
+function Game(canvas, address) {
   this.canvas = canvas;
   this.ctx = null;
   this.isPainting = false;
   this.currentLine = new Line();
   this.lines = [];
+  this.socket = null;
+  this.gameAddress = address;
 
   //prepare the canvas and context.
   this.setupCanvas(this.canvas);
@@ -13,9 +15,6 @@ function Game(canvas) {
 
   this.debug = true;
 
-  //set up the event handlers.
-  this.setupEvents();
-
   //save this for access in setInterval.
   var self = this;
 
@@ -24,6 +23,9 @@ function Game(canvas) {
     self.update.call(self);
     self.draw.call(self);
   }, 0);
+
+  //set up the event handlers.
+  this.setupEvents();
 }
 
 /**
@@ -71,6 +73,10 @@ Game.prototype.onMouseUp = function () {
   this.isPainting = false;
   if(this.currentLine.getLength()) {
     this.lines.push(this.currentLine);
+
+    //trigger server-side save of canvas.
+    this.triggerServerSave(this.currentLine);
+
     this.currentLine = new Line();
   }
 };
@@ -157,6 +163,28 @@ Game.prototype.setupEvents = function () {
   $(this.canvas).mousedown(function(e){
     self.onMouseDown.call(self,e);
   });
+
+  //connect socket.
+  this.socket = io('http://'+this.gameAddress);
+
+  //on a hello event from the socket.
+  this.socket.on('hello', function(data) {
+    if(!data.lines) {return;}
+    for (var i = 0; i < data.lines.length; i++) {
+      var pts = [];
+      var l = data.lines[i];
+      for (var j = 0; j < l.points.length; j++) {
+        var pt = l.points[j];
+        pts.push(new Point({x:pt.x, y:pt.y, color:pt.color}));
+      }
+
+      self.lines.push(new Line(pts, {color: l.color, width: l.width}));
+    }
+  });
+};
+
+Game.prototype.triggerServerSave = function (line) {
+  this.socket.emit('server-save-event', {line: line});
 };
 
 module.exports = Game;

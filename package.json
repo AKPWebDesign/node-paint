@@ -12,6 +12,7 @@
     "electron-prebuilt": "^0.35.0"
   },
   "dependencies": {
+    "canvas-to-buffer": "^1.0.6",
     "jquery": "^2.1.4",
     "titlebar": "^1.4.0"
   }

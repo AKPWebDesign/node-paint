@@ -3,13 +3,13 @@ function Renderer(ctx, game) {
   this.game = game;
 
   this.ctx.font = "32px 'Courier New'";
-  this.ctx.lineJoin = "round";
-  this.ctx.lineCap = "round";
 }
 
 Renderer.prototype.drawLine = function (line) {
   if(!line.getPoints().length) {return false;}
 
+  this.ctx.lineJoin = "round";
+  this.ctx.lineCap = "round";
   this.ctx.lineWidth = line.width;
   this.ctx.beginPath();
   for (var i = 0; i < line.getPoints().length; i++) {

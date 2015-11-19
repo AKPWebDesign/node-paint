@@ -5,6 +5,7 @@ $(document).ready(function(){
   });
 
   $("#singleplayer-button").click(function(){
+    ipcRenderer.send('load-internal-server');
     ipcRenderer.send('load-game');
   });
 });
