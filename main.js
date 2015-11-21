@@ -54,5 +54,3 @@ ipcMain.on('get-game-address', function() {
 function getVersionString() {
   return "v"+require('./package.json').version;
 }
-
-//require('./server.js');
