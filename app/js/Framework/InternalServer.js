@@ -12,7 +12,6 @@ InternalServer.prototype.goGoGo = function (callback) {
 
   var self = this;
   this.server.on('listening', function(){
-    console.log("Internal server listening on port " + self.server.address().port + ".");
     self.port = self.server.address().port;
     callback(self.port);
   });

@@ -73,11 +73,10 @@ Game.prototype.onMouseUp = function () {
   this.isPainting = false;
   if(this.currentLine.getLength()) {
     this.lines.push(this.currentLine);
+    this.currentLine = new Line();
 
     //trigger server-side save of canvas.
     this.triggerServerSave(this.currentLine);
-
-    this.currentLine = new Line();
   }
 };
 

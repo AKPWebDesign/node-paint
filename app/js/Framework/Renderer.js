@@ -1,8 +1,6 @@
 function Renderer(ctx, game) {
   this.ctx = ctx;
   this.game = game;
-
-  this.ctx.font = "32px 'Courier New'";
 }
 
 Renderer.prototype.drawLine = function (line) {
@@ -14,7 +12,7 @@ Renderer.prototype.drawLine = function (line) {
   this.ctx.beginPath();
   for (var i = 0; i < line.getPoints().length; i++) {
     var pt = line.getPoints()[i];
-    this.ctx.strokeStyle = (line.color || pt.color || "#000");
+    this.ctx.strokeStyle = (line.color || pt.color || "#000"); // '#'+(Math.random()*0xFFFFFF<<0).toString(16);
     if(i == 0) {
       this.ctx.moveTo(pt.x, pt.y);
       if(line.getPoints().length == 1) {
