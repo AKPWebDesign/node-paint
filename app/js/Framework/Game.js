@@ -149,7 +149,7 @@ Game.prototype.setupEvents = function () {
   var self = this;
 
   //for canvas and footerContainer, add mouseup and mousemove events.
-  $(this.canvas, ".footerContainer").each(function(){
+  $(`#${this.canvas.id}, .footerContainer`).each(function(){
     $(this).mouseup(function(){
       self.onMouseUp.call(self);
     });
