@@ -6,8 +6,8 @@ function DebugInfo(renderer) {
   this.fpsTracker = new FPSTracker();
 }
 
-DebugInfo.prototype.updatePointCount = function (pointCount) {
-  this.pointCount = pointCount;
+DebugInfo.prototype.addPoint = function () {
+  this.pointCount++;
 };
 
 DebugInfo.prototype.updateMouseCoords = function (point) {

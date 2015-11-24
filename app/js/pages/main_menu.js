@@ -8,4 +8,8 @@ $(document).ready(function(){
     ipcRenderer.send('load-internal-server');
     ipcRenderer.send('load-game');
   });
+
+  $("#server-browser-button").click(function(){
+    ipcRenderer.send('load-server-browser');
+  });
 });

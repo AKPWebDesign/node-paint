@@ -90,3 +90,17 @@ body.game, html {
   user-select: none;
   -webkit-user-select: none;
 }
+
+.server-browser table {
+  width: 100%;
+}
+
+.spacer {
+  padding-top: 24px;
+}
+
+.titlebar-container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}

@@ -4,7 +4,7 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 const ipcMain = require('electron').ipcMain;
 
-var InternalServer = require('./app/js/Framework/InternalServer');
+var Server = require('./app/js/Framework/Server');
 
 var mainWindow = null;
 var internalServer = null;
@@ -22,6 +22,7 @@ app.on('ready', function() {
   });
 
   mainWindow.loadUrl('file://' + __dirname + '/app/main_menu.html');
+  mainWindow.openDevTools();
 });
 
 ipcMain.on('close-main-window', function() {
@@ -41,10 +42,18 @@ ipcMain.on('load-game', function() {
 });
 
 ipcMain.on('load-internal-server', function() {
-  internalServer = new InternalServer();
+  internalServer = new Server({});
   internalServer.goGoGo(function(port) {
     internalServerPort = port;
   });
+});
+
+ipcMain.on('load-server-browser', function() {
+  mainWindow.loadUrl('file://' + __dirname + '/app/server_browser.html');
+});
+
+ipcMain.on('load-main-menu', function() {
+  mainWindow.loadUrl('file://' + __dirname + '/app/main_menu.html');
 });
 
 ipcMain.on('get-game-address', function() {

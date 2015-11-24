@@ -9,8 +9,8 @@ $(document).ready(function(){
   var t = titlebar();
 
   //append to titlebar element, if it exists, otherwise append to body.
-  if($(".titlebar").length) {
-    t.appendTo($(".titlebar").get(0));
+  if($(".titlebar-container").length) {
+    t.appendTo($(".titlebar-container").get(0));
   } else {
     t.appendTo(document.body);
   }
@@ -26,4 +26,6 @@ $(document).ready(function(){
   $(".titlebar-fullscreen").click(function(){
     ipcRenderer.send('maximize-main-window');
   });
+
+  $("<div class='spacer'></div>").insertAfter($(".titlebar-container"));
 });

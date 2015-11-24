@@ -1,13 +1,16 @@
-function InternalServer() {
+function Server(options) {
   this.server = require('http').createServer();
   this.io = require('socket.io')(this.server);
   this.fs = require('fs');
-  this.port = 0;
+  this.port = (options.port || 0);
+  this.playerLimit = (options.playerLimit || 10);
+  this.serverName = (options.serverName || "Node Paint Server");
+  this.password = (options.password || "");
 
   this.lines = [];
 }
 
-InternalServer.prototype.goGoGo = function (callback) {
+Server.prototype.goGoGo = function (callback) {
   this.server.listen(this.port);
 
   var self = this;
@@ -27,4 +30,4 @@ InternalServer.prototype.goGoGo = function (callback) {
   });
 };
 
-module.exports = InternalServer;
+module.exports = Server;

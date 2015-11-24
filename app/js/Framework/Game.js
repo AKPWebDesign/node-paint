@@ -18,11 +18,14 @@ function Game(canvas, address) {
   //save this for access in setInterval.
   var self = this;
 
+  //goal fps.
+  var fpsGoal = 60;
+
   //set off game update loop.
   setInterval(function() {
     self.update.call(self);
     self.draw.call(self);
-  }, 0);
+  }, 1000/fpsGoal);
 
   //set up the event handlers.
   this.setupEvents();
@@ -33,13 +36,6 @@ function Game(canvas, address) {
  * This runs every JS frame, if possible.
  */
 Game.prototype.update = function () {
-  //update point count for debug display.
-  var points = 0;
-  for (var i = 0; i < this.lines.length; i++) {
-    points += this.lines[i].getLength();
-  }
-  points += this.currentLine.getLength();
-  this.debugInfo.updatePointCount(points);
   this.debugInfo.updateLineCount(this.lines.length + (this.currentLine.points.length ? 1 : 0));
   this.debugInfo.fpsTracker.loop();
 };
@@ -90,6 +86,7 @@ Game.prototype.onMouseMove = function (e) {
   var point = this.makePointFromEvent(e);
   if(this.isPainting) {
     this.currentLine.addPoint(point);
+    this.debugInfo.addPoint();
   }
 
   this.debugInfo.updateMouseCoords(point);
@@ -106,6 +103,7 @@ Game.prototype.onMouseDown = function (e) {
   var point = this.makePointFromEvent(e);
   this.isPainting = true;
   this.currentLine.addPoint(point);
+  this.debugInfo.addPoint();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
